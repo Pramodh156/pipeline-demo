@@ -21,7 +21,7 @@ pipeline {
 		}
 		stage('TESTING') {
 		steps {
-			sh ' this is testing stage '
+			sh ' echo"this is testing stage" '
 			}
 		}
 	}
