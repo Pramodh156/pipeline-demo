@@ -13,12 +13,12 @@ pipeline {
 			}
 		stage('DEPLOY') {
 			steps {
-				ssh 'echo "this is a DEPLOY STAGE"'
+				sh ' echo "this is a DEPLOY STAGE" '
 				}
 			}
 		stage('TESTING-1') {
 			steps {
-				ssh '''
+				sh '''
 				#!/bin/bash
 				pwd
 				df -h
