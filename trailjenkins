@@ -1,0 +1,29 @@
+pipeline {
+	agent {label 'master'}
+	stages {
+		stage('BUILD') {
+		steps {
+			sh ' echo " This is build stage " '
+			}
+		}
+		stage('DEPLOY') {
+		steps {
+			sh '''
+			#!/bin/bash
+			ls -lrt
+			java --version
+			date
+			who am i
+			ps -ef | grep jenkins
+			echo " This is Deploy stage "
+			'''
+			}
+		}
+		stage('TESTING') {
+		steps {
+			sh ' this is testing stage '
+			}
+		}
+	}
+
+}
