@@ -11,7 +11,7 @@ pipeline {
 			sh '''
 			#!/bin/bash
 			ls -lrt
-			java --version
+			java -version
 			date
 			who am i
 			ps -ef | grep jenkins
