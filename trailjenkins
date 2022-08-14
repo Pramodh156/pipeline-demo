@@ -3,7 +3,11 @@ pipeline {
 	stages {
 		stage('BUILD') {
 		steps {
-			sh ' echo " This is build stage " '
+			sh '''
+			#!/bin/bash
+			echo " This is build stage "
+			sleep 5
+			'''
 			}
 		}
 		stage('DEPLOY') {
@@ -16,12 +20,13 @@ pipeline {
 			who am i
 			ps -ef | grep jenkins
 			echo " This is Deploy stage "
+			sleep 5
 			'''
 			}
 		}
 		stage('TESTING') {
 		steps {
-			sh ' echo "this is testing stage" '
+			sh 'echo "this is testing stage" '
 			}
 		}
 	}
