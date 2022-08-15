@@ -1,0 +1,33 @@
+pipeline{
+    agent master
+    stages{
+        stage('BUILD') {
+            steps {
+                sh '''
+                #!/bin/bash
+                echo " this is a build stage "
+                '''
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                sh ' echo " this is a deploy stage " '
+            }
+        }
+        stage('TESTING') {
+            parallel {
+                stage('TESTING-1') {
+                    steps {
+                        sh ' echo " this is a testing-1 stage " '
+                    }
+                }
+                stage('TESTING-2') {
+                    steps {
+                        sh ' echo " this is testing-2 stage " '
+                    }
+                }
+             }
+
+            }
+        }
+}
