@@ -1,10 +1,10 @@
 pipeline {
     agent {label 'master'}
-    properties([parameters([choice(choices: ['BUILD', 'DEPLOY', 'TESTING'], description: 'JOB is triggered based on the selected choice.', name: 'STAGE')])])
+    options([parameters([choice(choices: ['BUILD', 'DEPLOY', 'TESTING'], description: 'JOB is triggered based on the selected choice.', name: 'STAGE')])])
     stages {
         stage('BUILD') {
             steps {
-                if (params.STAGE=='BUILD')
+                if (params.STAGE == 'BUILD')
                 {
                     sh '''
                     #!/bin/bash
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('DEPLOY') {
             steps {
-                if (params.STAGE=='DEPLOY')
+                if (params.STAGE == 'DEPLOY')
                 {
                     sh '''
                     #!/bin/bash
