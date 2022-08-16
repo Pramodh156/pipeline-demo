@@ -1,0 +1,28 @@
+pipeline { 
+    agent { label 'slave1'}
+    stages {
+        stage ('BUILD') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Pramodh156/c-project.git'
+                sh '''
+                #!/bin/bash
+                make
+                echo " This is a Build Stage "
+                sleep 5
+                '''
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                sh ' echo " this is deploy stage" '
+                sh ' sleep 5 '
+            }
+        }
+        stage('TESTING') {
+            steps {
+                sh ' echo " this is a testing stage " '
+                sh ' sleep 5 '
+            }
+        }
+    }
+}
