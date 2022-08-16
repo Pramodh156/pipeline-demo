@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('BUILD') {
             steps {
-                if (params.STAGE == 'BUILD')
+                if(params.STAGE == 'BUILD')
                 {
                     sh '''
                     #!/bin/bash
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('DEPLOY') {
             steps {
-                if (params.STAGE == 'DEPLOY')
+                if(params.STAGE == 'DEPLOY')
                 {
                     sh '''
                     #!/bin/bash
