@@ -7,6 +7,9 @@ pipeline {
 stages {
     stage('BUILD') {
         agent {label 'master'}
+        environment {
+  BUILD_ENV = "only_for_build_stage"
+}
         steps {
             git branch:env.BRANCH , url:env.GIT_REPO
             sh' echo "this is build stage" '
@@ -19,6 +22,7 @@ stages {
             echo " this is deploy stage "
             sh ' sleep 5 '
             echo " $BRANCH $GIT_REPO "
+            echo " $BUILD_ENV "
             }
         }
     }
