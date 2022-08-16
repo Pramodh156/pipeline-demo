@@ -1,6 +1,8 @@
 pipeline {
     agent {label 'master'}
-    options([parameters([choice(choices: ['BUILD', 'DEPLOY', 'TESTING'], description: 'JOB is triggered based on the selected choice.', name: 'STAGE')])])
+    parameters {
+        choice(name: 'STAGE', choices: ['BUILD','DEPLOY'], description: 'Stages to build')
+        }
     stages {
         stage('BUILD') {
             steps {
