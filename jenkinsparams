@@ -1,0 +1,33 @@
+pipeline {
+    agent {label 'master'}
+    properties([parameters([choice(choices: ['BUILD', 'DEPLOY', 'TESTING'], description: 'JOB is triggered based on the selected choice.', name: 'STAGE')])])
+    stages {
+        stage('BUILD') {
+            steps {
+                if (params.STAGE=='BUILD')
+                {
+                    sh '''
+                    #!/bin/bash
+                    pwd
+                    echo " this is a build stage "
+                    sleep 5
+                    '''
+                }
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                if (params.STAGE=='DEPLOY')
+                {
+                    sh '''
+                    #!/bin/bash
+                    pwd
+                    ls -lrt
+                    echo " this is a testing stage "
+                    sleep 5
+                    '''
+                }
+            }
+        }
+    }
+}
