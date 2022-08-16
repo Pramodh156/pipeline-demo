@@ -54,6 +54,9 @@ pipeline {
                     sleep 6
                     '''
                 }
+                else {
+                echo " skipping the testing stage "
+                }
                 }
             }
         }
