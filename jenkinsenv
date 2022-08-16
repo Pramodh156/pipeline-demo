@@ -1,0 +1,25 @@
+pipeline {
+    agent none
+    environment {
+  BRANCH = "main"
+  GIT_REPO = "https://github.com/Pramodh156/pipeline-demo.git"
+}
+stages {
+    stage('BUILD') {
+        agent {label 'master'}
+        steps {
+            git branch:env.BRANCH , url:env.GIT_REPO
+            sh' echo "this is build stage" '
+            sh ' sleep 5 '
+        }
+    }
+    stage('DEPLOY') {
+        agent {label 'master'}
+        steps {
+            echo " this is deploy stage "
+            sh ' sleep 5 '
+            echo " $BRANCH $GIT_REPO "
+            }
+        }
+    }
+}
