@@ -1,7 +1,7 @@
 pipeline {
     agent {label 'master'}
     parameters {
-        choice(name: 'STAGE', choices: ['BUILD','DEPLOY'], description: 'Stages to build')
+        choice(name: 'STAGE', choices: ['BUILD','DEPLOY','TESTING'], description: 'Stages to build')
         }
     stages {
         stage('BUILD') {
@@ -15,11 +15,12 @@ pipeline {
                     echo " this is a build stage "
                     sleep 5
                     '''
-                } else {
+                } 
+                else {
                 echo " skipping the build stage "
-                 }
+                    }
+                }
             }
-        }
         }
         stage('DEPLOY') {
             steps {
@@ -33,11 +34,28 @@ pipeline {
                     echo " this is a testing stage "
                     sleep 5
                     '''
-                } else { 
+                } 
+                else { 
                 echo " skipping the deploy stage "
+                    }
+                }
+            }
+        }
+        stage('TESTING') {
+            steps {
+                script {
+                if(params.STAGE == 'TESTING')
+                {
+                    sh '''
+                    #!/bin/bash
+                    pwd
+                    df -h
+                    echo " this is a testing stage "
+                    sleep 6
+                    '''
+                }
                 }
             }
         }
     }
-}
 }
