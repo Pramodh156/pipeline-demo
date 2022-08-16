@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('BUILD') {
             steps {
+                script {
                 if(params.STAGE == 'BUILD')
                 {
                     sh '''
@@ -17,8 +18,10 @@ pipeline {
                 }
             }
         }
+        }
         stage('DEPLOY') {
             steps {
+                script {
                 if(params.STAGE == 'DEPLOY')
                 {
                     sh '''
@@ -32,4 +35,5 @@ pipeline {
             }
         }
     }
+}
 }
